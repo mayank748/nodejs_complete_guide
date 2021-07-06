@@ -1,23 +1,23 @@
-const person={
-    name:'Mayank',
-    age:29,
-    greet(){
-        console.log('Hi, I am '+this.name);
-    }
+const fetchData=()=>{
+    const promise=new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve('Done');
+        },1500)
+    })
+    return promise;
 };
-// person.greet();
 
-// destructing
-// object 
-const printName=({name})=>{
-    console.log(name);
-    // console.log(greet());
-}
-printName(person);
+setTimeout(()=>{
+    console.log('Timer is done!');
+    fetchData()
+        .then(text=>{
+            console.log(text);
+            return fetchData();
+        })
+        .then(text2=>{
+            console.log(text2);
+        });
+},2000);
 
-const {name,age}=person;
-console.log(name,age);
-
-const hobbies=['Sports','Cooking'];
-const [hobby1,hobby2]=hobbies;
-console.log(hobby1,hobby2);
+console.log('hello!...');
+console.log('hi!...');
