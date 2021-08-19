@@ -49,5 +49,5 @@ const requestHandler = (req, res) => {
 // module.exports=requestHandler;
 module.exports={
     handler:requestHandler,
-    someText:'Some hard coded value from routes'
+    someText:'Some hard coded value from routes.'
 };
