@@ -9,6 +9,7 @@ const shopRoutes=require('./routes/shop');
 
 //Place for middleware
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(express.static(path.join(__dirname,'public')));
 
 // app.use('/',(req,res,next)=>{
 //     console.log('In the middleware second')
