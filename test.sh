@@ -1,0 +1,2 @@
+item=$(date)
+echo  $item
