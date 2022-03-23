@@ -1,30 +1,24 @@
-const express=require('express');
-const bodyParser=require('body-parser');
-const path =require('path');
+const path = require('path');
 
-const app=express();
+const express = require('express');
+const bodyParser = require('body-parser');
 
-const adminRoutes=require('./routes/admin');
-const shopRoutes=require('./routes/shop');
+const app = express();
 
-//Place for middleware
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(express.static(path.join(__dirname,'public')));
+app.set('view engine', 'pug');
+app.set('views', 'views');
 
-// app.use('/',(req,res,next)=>{
-//     console.log('In the middleware second')
-//     res.send('<h1>Hello from express js</h1>')
-// });
+const adminData = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/admin', adminData);
 app.use(shopRoutes);
-app.use('/admin',adminRoutes);
 
-app.use((req,res,next)=>{
-    //res.status(404).send('<h1>Page not found</h1>')
-    res.status(404).sendFile(path.join(__dirname,'views','404.html'));
+app.use((req, res, next) => {
+    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
 });
 
-// const server=http.createServer(app);
-// server.listen(3000);
-// is replaced with 
 app.listen(3000);
